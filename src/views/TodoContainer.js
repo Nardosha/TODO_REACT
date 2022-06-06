@@ -45,6 +45,7 @@ export default class TodoContainer extends React.Component {
       return;
     }
     this.addNewTaskToGroup(newTask);
+    console.log(this.state)
   }
   render() {
     console.log(this.state)

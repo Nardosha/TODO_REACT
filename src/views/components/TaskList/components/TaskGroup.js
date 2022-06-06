@@ -1,5 +1,6 @@
 import React from "react";
 import TaskItem from "./TaskItem";
+import {ButtonAddTask} from "../../NewTask/NewTaskComponents/ButtonAddTask";
 
 export default class TaskGroup extends React.Component {
   render() {
@@ -10,7 +11,7 @@ export default class TaskGroup extends React.Component {
 
     return (
       <li className="group-item">
-        {currentGroup.groupSign}
+        {currentGroup.groupSign} <ButtonAddTask />
         <ul className="task-group">{taskItems}</ul>
       </li>
     );
