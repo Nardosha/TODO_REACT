@@ -50,10 +50,12 @@ export default class TodoContainer extends React.Component {
   render() {
     console.log(this.state)
     return (
-      <div>
-        <NewTaskComponent onSave={this.saveTask} />
-        <TaskList groupList={this.state} />
-      </div>
+        <main className="main">
+          <div className="task-list__wrapper">
+          <NewTaskComponent onSave={this.saveTask} />
+        {/*<TaskList groupList={this.state} />*/}
+          </div>
+        </main>
     );
   }
 }
