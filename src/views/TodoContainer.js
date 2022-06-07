@@ -1,61 +1,99 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NewTaskComponent from "./components/NewTask/NewTaskComponent";
 import TaskList from "./components/TaskList/TaskList";
+import { Modal } from "./components/Modal";
 
-export default class TodoContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.isEmpty = true;
+export default function TodoContainer() {
+  const [todos, setTodos] = useState([
+    {
+      groupSign: "Study",
+      groupId: 12,
+      taskList: [
+        {
+          id: 1,
+          taskName: "Learn English",
+          time: "20:00",
+          notes: "You can do it!",
+          completed: false,
+        },
+        {
+          id: 2,
+          taskName: "Learn Ract",
+          time: "21:00",
+          notes: "Finish TODO",
+          completed: true,
+        },
+      ],
+    },
+    {
+      groupSign: "Chill",
+      groupId: 14,
+      taskList: [
+        {
+          id: 4,
+          taskName: "Sleep early",
+          time: "23:00",
+          notes: "Dreams is waiting for you",
+          completed: false,
+        },
+      ],
+    },
+  ]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    this.saveTask = this.saveTask.bind(this);
-    this.addNewTaskToGroup = this.addNewTaskToGroup.bind(this);
-    this.createTaskGroup = this.createTaskGroup.bind(this);
+  function toggleModal(boolean) {
+    console.log("isModalOpen", isModalOpen, boolean);
+    setIsModalOpen(boolean);
   }
-  addNewTaskToGroup(newTask) {
-    this.setState({
-      [newTask.groupSign]: {
-        groupId: this.state[newTask.groupSign].groupId,
-        groupSign: this.state[newTask.groupSign].groupSign,
-        taskList: [
-          ...this.state[newTask.groupSign].taskList,
-          ...[newTask.task],
-        ],
-      },
-    });
-  }
+  console.log("isModalOpen", isModalOpen);
 
-  createTaskGroup(newTask) {
-    this.setState({
-      [newTask.groupSign]: {
-        groupId: newTask.groupId,
-        groupSign: newTask.groupSign,
-        taskList: [newTask.task],
-      },
-    })
-    this.isEmpty = false;
-  }
+  function changeTodos(todo) {
+    console.log(todos);
 
-  saveTask(e) {
-    const newTask = e;
-
-    if (this.isEmpty || !this.state[newTask.groupSign]) {
-      this.createTaskGroup(newTask);
-      return;
-    }
-    this.addNewTaskToGroup(newTask);
-    console.log(this.state)
-  }
-  render() {
-    console.log(this.state)
-    return (
-        <main className="main">
-          <div className="task-list__wrapper">
-          <NewTaskComponent onSave={this.saveTask} />
-        {/*<TaskList groupList={this.state} />*/}
-          </div>
-        </main>
+    setTodos(
+      todos.map((group) => {
+        group.taskList.map((task) => {
+          if (task.id === todo.id) {
+            task.completed = !task.completed;
+          }
+          return task;
+        });
+        return group;
+      })
     );
   }
+
+  function deleteTask(id) {
+    setTodos(
+      todos.filter((group) => {
+        return (group.taskList = group.taskList.filter(
+          (task) => task.id !== id
+        ));
+      })
+    );
+  }
+
+  function saveTask(item) {
+    todos.push(item);
+    toggleModal(false);
+  }
+
+  console.log("TODOS", isModalOpen);
+
+  return (
+    <main className="main">
+      <div className="task-list__wrapper">
+        <TaskList
+          onChange={changeTodos}
+          groupList={todos}
+          onDeleteTask={deleteTask}
+          openModal={toggleModal}
+        />
+        <Modal open={isModalOpen}>
+          <NewTaskComponent openModal={toggleModal} onSubmit={saveTask} />
+        </Modal>
+      </div>
+    </main>
+  );
 }

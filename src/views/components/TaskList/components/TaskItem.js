@@ -1,18 +1,26 @@
 import React from "react";
 
-export default class TaskItem extends React.Component {
-  render() {
-    const task = this.props.task;
-    const name = task.taskName;
-    const time = task.time;
-    const notes = task.notes;
+export default function TaskItem({ task, changeItem, onDelete }) {
+  const classes = ["task-item"];
 
-    return (
-      <li className="task-item">
-        <span>{name}</span>
-        <span>{time}</span>
-        <span>{notes}</span>
-      </li>
-    );
+  if (task.completed) {
+    classes.push("_done");
   }
+
+  return (
+    <li className="task-item">
+      <span className={classes.join(" ")}>
+        <span>{task.taskName}</span>
+        <span>{task.time}</span>
+        <span>{task.notes}</span>
+        <input
+          onChange={() => changeItem(task)}
+          type="checkbox"
+          checked={task.completed}
+          className="task-item__checkbox"
+        />
+        <button onClick={() => onDelete(task.id)}>Удалить</button>
+      </span>
+    </li>
+  );
 }

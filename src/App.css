@@ -115,8 +115,9 @@ legend {
 .new-task__wrapper {
   max-width: 40%;
   min-height: 80%;
-  background-color: #d191c8;
+  background-color: #ba74af;
   padding: 10px 10px;
+  border-radius: 0.7rem;
   transform: scale(0);
   transition: transform 0.5s ease-in-out;
 }
@@ -174,6 +175,20 @@ legend {
   padding: 5px 10px;
 }
 
+/*--font---*/
+/*--input---*/
+.group-item__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+._done {
+  text-decoration: line-through;
+}
+
 .title {
   font-size: 24px;
 }
@@ -211,7 +226,7 @@ legend {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   visibility: hidden;
   opacity: 0;
 }
