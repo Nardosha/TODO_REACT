@@ -1,10 +1,8 @@
 export const Modal = ({ children, open }) => {
-  // const [isOpen, setIsOpen ] = useState(false)
-  const classes = ["popup"];
-  console.log(open);
   if (!open) return null;
+
+  const classes = ["popup"];
   classes.push("_open");
-  console.log(children);
 
   return (
     <div className={classes.join(" ")} id="popup-new-task">

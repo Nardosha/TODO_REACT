@@ -1,0 +1,66 @@
+@import "./font";
+@import "variables";
+@import "./components/newTaskComponent";
+@import "./components/todoContainer";
+@import "./components/todoList";
+
+body, html {
+  font-family: $fontFamily;
+  font-size: $fontSizeRegular;
+  font-weight: $fontWeightRegular;
+  line-height: $lineHeightRegular;
+  color: $fontColorRegular;
+}
+
+.title {
+  font-size: $fontSizeTitle;
+}
+.input {
+  @include input();
+}
+.label {
+  display: block;
+  margin: $labelMargin;
+}
+
+.button {
+  @include button();
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+
+  &._open {
+    visibility: visible;
+    opacity: 1;
+
+    .new-task__wrapper {
+      transform: scale(1);
+    }
+  }
+
+  &__container {
+    @include flexColumn(column, center);
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+  }
+
+
+}
+
+.App {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+}

@@ -30,8 +30,6 @@ export default function NewTaskComponent({ onSubmit, openModal }) {
     };
     onSubmit(todoItem);
     openModal(false);
-
-    console.log(this);
   }
 
   return (

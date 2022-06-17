@@ -1,0 +1,51 @@
+@import "../variables";
+
+
+
+.new-task {
+  flex: 0 1 auto;
+  display: flex;
+  border: 2px solid black;
+  overflow: hidden;
+  border-radius: 1rem;
+  min-height: 100%;
+  transition: all 0.4s ease-in-out 0s;
+
+  @include flexColumn(row, center);
+
+
+  &__wrapper {
+    max-width: 40%;
+    min-height: 80%;
+    background-color: #ba74af;
+    padding: 10px 10px;
+    border-radius: 0.7rem;
+    transform: scale(0);
+    transition: transform 0.5s ease-in-out;
+
+  }
+  &__title {
+    margin: 10px 0;
+  }
+  &__form {
+    flex: 1 1 auto;
+    @include flexColumn();
+  }
+  &__label {}
+  &__input {
+
+    &_time {}
+  }
+  &__time {}
+  &__notes {}
+  &__button {
+    @include flexColumn(row, center);
+
+    .new-task__button_label {
+      @include button();
+    }
+    .new-task__button_add {
+      display: none;
+    }
+  }
+}

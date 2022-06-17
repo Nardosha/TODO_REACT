@@ -43,13 +43,10 @@ export default function TodoContainer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function toggleModal(boolean) {
-    console.log("isModalOpen", isModalOpen, boolean);
     setIsModalOpen(boolean);
   }
-  console.log("isModalOpen", isModalOpen);
 
   function changeTodos(todo) {
-    console.log(todos);
 
     setTodos(
       todos.map((group) => {
@@ -79,7 +76,6 @@ export default function TodoContainer() {
     toggleModal(false);
   }
 
-  console.log("TODOS", isModalOpen);
 
   return (
     <main className="main">

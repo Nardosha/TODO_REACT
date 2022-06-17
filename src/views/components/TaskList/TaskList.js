@@ -7,9 +7,7 @@ export default function TaskList({
   onDeleteTask,
   openModal,
 }) {
-  console.log(groupList);
   const list = groupList.map((group) => {
-    console.log(group);
     const groupKey = group.groupId.toString();
     return (
       <TaskGroup
@@ -22,5 +20,5 @@ export default function TaskList({
     );
   });
 
-  return <ul className="task-list">{list}</ul>;
+  return <ul className="task-list task-list__group">{list}</ul>;
 }

@@ -1,26 +1,37 @@
 import React from "react";
 
 export default function TaskItem({ task, changeItem, onDelete }) {
-  const classes = ["task-item"];
+  const classes = ["task-item__content-left"];
 
   if (task.completed) {
     classes.push("_done");
   }
 
   return (
-    <li className="task-item">
-      <span className={classes.join(" ")}>
-        <span>{task.taskName}</span>
-        <span>{task.time}</span>
-        <span>{task.notes}</span>
+    <li className="group-item__task task-item">
+      <div className={classes.join(" ")}>
         <input
           onChange={() => changeItem(task)}
           type="checkbox"
           checked={task.completed}
-          className="task-item__checkbox"
+          className="group-item__checkbox"
         />
-        <button onClick={() => onDelete(task.id)}>Удалить</button>
-      </span>
+        <div className="task-item__name">{task.taskName}</div>
+      </div>
+      <div className="task-item__content-right">
+      <div className="task-item__notes">!
+        <div className="task-item__notes_popup">{task.notes}</div>
+      </div>
+
+
+      <div className="task-item__time">{task.time}</div>
+      <button
+        className="task-item__button-delete"
+        onClick={() => onDelete(task.id)}
+      >
+        Удалить
+      </button>
+      </div>
     </li>
   );
 }

@@ -18,14 +18,14 @@ export default function TaskGroup({
 
   return (
     <li className="group-item">
-      <span className="group-item__header">
+      <h2 className="group-item__header">
         {taskGroup.groupSign}
         <button onClick={() => onOpenModal(true)} className="button add-task">
           +
         </button>
-      </span>
+      </h2>
 
-      <ul className="task-group">{taskItems}</ul>
+      <ul className="task-list group-item__list">{taskItems}</ul>
     </li>
   );
 }
