@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NewTaskComponent from "./components/NewTask/NewTaskComponent";
 import TaskList from "./components/TaskList/TaskList";
-import { Modal } from "./components/Modal";
+import { Modal } from "./components/Modals/Modal";
 
 export default function TodoContainer() {
   const [todos, setTodos] = useState([
@@ -69,11 +69,17 @@ export default function TodoContainer() {
         ));
       })
     );
+
+
   }
 
   function saveTask(item) {
-    todos.push(item);
+    console.log('SAVE', item)
+
+    setTodos([...todos, ...[item]]);
+    // todos.push(item)
     toggleModal(false);
+    console.log(todos)
   }
 
 

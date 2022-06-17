@@ -20,7 +20,7 @@ $fontWeightTitle: 500;
 
 
 /*--input---*/
-$inputWidth: 30rem;
+//$inputWidth: 30rem;
 $inputHeight: 2rem;
 $inputPadding: 0.3rem;
 
@@ -36,7 +36,7 @@ $widthContainer: 620px;
 }
 
 @mixin input() {
-  width: $inputWidth;
+  width: 100%;
   min-height: $inputHeight;
   display: flex;
   border-radius: 0.5rem;

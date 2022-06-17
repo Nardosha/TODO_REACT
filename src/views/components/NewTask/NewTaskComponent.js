@@ -21,12 +21,13 @@ export default function NewTaskComponent({ onSubmit, openModal }) {
     const todoItem = {
       groupSign: defTask.groupSign,
       groupId: defTask.groupId,
-      task: {
+      taskList: [{
         id: defTask.id,
         taskName: defTask.taskName,
         time: defTask.time,
         notes: defTask.notes,
-      },
+        completed: defTask.completed,
+      }]
     };
     onSubmit(todoItem);
     openModal(false);

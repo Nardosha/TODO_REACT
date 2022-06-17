@@ -7,6 +7,7 @@ export default function TaskList({
   onDeleteTask,
   openModal,
 }) {
+  console.log(groupList)
   const list = groupList.map((group) => {
     const groupKey = group.groupId.toString();
     return (

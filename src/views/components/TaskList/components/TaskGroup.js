@@ -7,6 +7,7 @@ export default function TaskGroup({
   deleteTask,
   onOpenModal,
 }) {
+  console.log(taskGroup)
   const taskItems = taskGroup.taskList.map((task) => (
     <TaskItem
       key={task.id.toString()}
