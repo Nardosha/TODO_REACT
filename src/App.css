@@ -250,7 +250,7 @@ legend {
 /*--input---*/
 .main {
   height: 100vh;
-  min-width: 620px;
+  min-width: 900px;
   flex: 0 1 auto;
 }
 

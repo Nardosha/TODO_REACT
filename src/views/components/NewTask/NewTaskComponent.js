@@ -1,4 +1,8 @@
-export default function NewTaskComponent({ onSubmit, openModal }) {
+import Button from "../Buttons/Button";
+import SubmitButton from "../Buttons/SubmitButton";
+import { ACTION_TYPE } from "../../helpers/helpers";
+
+export default function NewTaskComponent({ onSubmit, openModal, setActionType, actionType }) {
   const defTask = {
     taskName: "",
     time: "",
@@ -8,6 +12,7 @@ export default function NewTaskComponent({ onSubmit, openModal }) {
     groupId: 25,
     completed: false,
   };
+
 
   function onChange(e) {
     const property = e.target.name;
@@ -35,7 +40,15 @@ export default function NewTaskComponent({ onSubmit, openModal }) {
 
   return (
     <div className="new-task__wrapper">
-      <button onClick={() => openModal(false)}>Закрыть</button>
+      <Button
+        className={'button-close'}
+        text={'Закрыть'}
+        id={'button-close'}
+        action={openModal}
+        value={false}
+        setActionType={setActionType}
+        actionType={ACTION_TYPE.CLOSE}
+      />
       <h2 className="title new-task__title">New Task</h2>
       <form className="new-task__form" action="#" onSubmit={submitHandler}>
         <label className="label new-task__name" htmlFor="newTaskName">
@@ -71,16 +84,10 @@ export default function NewTaskComponent({ onSubmit, openModal }) {
           onChange={(e) => onChange(e)}
         />
         <div className="new-task__button">
-          <label
-            className="button new-task__button_label"
-            htmlFor="newTaskButton"
-          >
-            +
-          </label>
-          <input
-            id="newTaskButton"
-            className="button new-task__button_add"
-            type="submit"
+          <SubmitButton
+            className={'new-task__button'}
+            id={'new-task-button'}
+            text={'+'}
           />
         </div>
       </form>

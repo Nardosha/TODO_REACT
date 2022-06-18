@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import NewTaskComponent from "./components/NewTask/NewTaskComponent";
 import TaskList from "./components/TaskList/TaskList";
 import { Modal } from "./components/Modals/Modal";
+import { type } from "@testing-library/user-event/dist/type";
+import { ACTION_TYPE } from "./helpers/helpers";
 
 export default function TodoContainer() {
   const [todos, setTodos] = useState([
@@ -39,8 +41,9 @@ export default function TodoContainer() {
       ],
     },
   ]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [action, setAction] = useState(null)
+
 
   function toggleModal(boolean) {
     setIsModalOpen(boolean);
@@ -65,7 +68,6 @@ export default function TodoContainer() {
       todos.filter((group) => {
         group.taskList = group.taskList.filter((task) => task.id !== id);
         if (!group.taskList.length) {
-          console.log(`В ГРУППЕ ${group.groupSign} НЕТ ЗАДАЧ!`);
           return false;
         }
         return group.taskList;
@@ -73,16 +75,49 @@ export default function TodoContainer() {
     );
   }
 
-  function deleteGroup(e) {
-    console.log("CONTAINER DELETE_GROUP", e);
+  function deleteGroup(deleteGroup) {
+    setTodos(todos.filter((group) => group.groupId !== deleteGroup.groupId));
   }
 
-  function saveTask(item) {
-    console.log("TODO CONTAINER! SAVE", item);
+  function isNewGroup(newGroup) {
+    return !todos.find((group) => group.groupId === newGroup.groupId);
+  }
 
-    setTodos([...todos, ...[item]]);
+  // function editTodos(newTodo) {
+  //   setAction(ACTION_TYPE.EDIT)
+  // }
+
+  function saveTask(newTask) {
+    if (isNewGroup(newTask)) {
+      const newTodos = [...todos, ...[newTask]];
+      setTodos(newTodos);
+    } else {
+      setTodos(
+        todos.map((group) => {
+          if (group.groupId === newTask.groupId) {
+            group.taskList = [...group.taskList, ...newTask.taskList];
+            return group;
+          }
+          return group;
+        })
+      );
+    }
     toggleModal(false);
   }
+
+  function renameTaskItem(newName) {
+  }
+
+  if (action === 'OPEN') {
+    setIsModalOpen(true)
+    return
+  }
+  if (action === 'CLOSE') {
+    setIsModalOpen(true)
+    return
+  }
+
+  console.log('ACTION', action);
 
   return (
     <main className="main">
@@ -93,9 +128,11 @@ export default function TodoContainer() {
           onDeleteTask={deleteTask}
           openModal={toggleModal}
           onDeleteGroup={deleteGroup}
+          onRenameTaskItem={renameTaskItem}
+          actionType={setAction}
         />
         <Modal open={isModalOpen}>
-          <NewTaskComponent openModal={toggleModal} onSubmit={saveTask} />
+          <NewTaskComponent actionType={action} setActionType={setAction} openModal={toggleModal} onSubmit={saveTask} />
         </Modal>
       </div>
     </main>
