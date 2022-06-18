@@ -47,7 +47,6 @@ export default function TodoContainer() {
   }
 
   function changeTodos(todo) {
-
     setTodos(
       todos.map((group) => {
         group.taskList.map((task) => {
@@ -64,24 +63,26 @@ export default function TodoContainer() {
   function deleteTask(id) {
     setTodos(
       todos.filter((group) => {
-        return (group.taskList = group.taskList.filter(
-          (task) => task.id !== id
-        ));
+        group.taskList = group.taskList.filter((task) => task.id !== id);
+        if (!group.taskList.length) {
+          console.log(`В ГРУППЕ ${group.groupSign} НЕТ ЗАДАЧ!`);
+          return false;
+        }
+        return group.taskList;
       })
     );
+  }
 
-
+  function deleteGroup(e) {
+    console.log("CONTAINER DELETE_GROUP", e);
   }
 
   function saveTask(item) {
-    console.log('SAVE', item)
+    console.log("TODO CONTAINER! SAVE", item);
 
     setTodos([...todos, ...[item]]);
-    // todos.push(item)
     toggleModal(false);
-    console.log(todos)
   }
-
 
   return (
     <main className="main">
@@ -91,6 +92,7 @@ export default function TodoContainer() {
           groupList={todos}
           onDeleteTask={deleteTask}
           openModal={toggleModal}
+          onDeleteGroup={deleteGroup}
         />
         <Modal open={isModalOpen}>
           <NewTaskComponent openModal={toggleModal} onSubmit={saveTask} />
