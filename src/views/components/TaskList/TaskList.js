@@ -5,9 +5,9 @@ export default function TaskList({
   groupList,
   onChange,
   onDeleteTask,
-  openModal,
   onDeleteGroup,
-  actionType
+  onAction,
+  onEditTask,
 }) {
   const list = groupList.map((group) => {
     const groupKey = group.groupId.toString();
@@ -16,10 +16,10 @@ export default function TaskList({
         key={groupKey}
         taskGroup={group}
         changeTodoItem={onChange}
-        deleteTask={onDeleteTask}
-        onOpenModal={openModal}
+        onDeleteTask={onDeleteTask}
         onDeleteGroup={onDeleteGroup}
-        setActionType={actionType}
+        setActionType={onAction}
+        onEditTask={onEditTask}
       />
     );
   });

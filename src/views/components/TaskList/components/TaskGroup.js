@@ -6,20 +6,29 @@ import { ACTION_TYPE } from "../../../helpers/helpers";
 export default function TaskGroup({
   taskGroup,
   changeTodoItem,
-  deleteTask,
+  onDeleteTask,
   onDeleteGroup,
-  onOpenModal,
   setActionType,
+  onEditTask,
 }) {
+  function deleteTask() {
+    setActionType(ACTION_TYPE.DELETE_TASK);
+    onDeleteGroup(taskGroup);
+  }
+
+  function createTask() {
+    setActionType(ACTION_TYPE.OPEN_MODAL);
+  }
+
   const taskItems = taskGroup.taskList.map((task) => (
     <TaskItem
       key={task.id.toString()}
       task={task}
-      onOpenModal={onOpenModal}
       changeItem={changeTodoItem}
-      onDelete={deleteTask}
+      onDelete={onDeleteTask}
       setActionType={setActionType}
-      actionType={ACTION_TYPE.CREATE}
+      actionType={ACTION_TYPE.CREATE_TASK}
+      onEditTask={onEditTask}
     />
   ));
 
@@ -32,14 +41,12 @@ export default function TaskGroup({
           value={taskGroup}
           action={onDeleteGroup}
           className={"delete-group"}
-          setActionType={() => setActionType(ACTION_TYPE.DELETE)}
+          click={deleteTask}
         />
         <Button
           text={"+"}
-          value={true}
-          action={onOpenModal}
-          setActionType={() => setActionType(ACTION_TYPE.OPEN)}
           className={"add-task"}
+          click={createTask}
         />
       </h2>
 

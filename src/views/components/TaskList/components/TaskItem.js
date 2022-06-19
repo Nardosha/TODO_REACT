@@ -2,17 +2,30 @@ import React, { useState } from "react";
 import Button from "../../Buttons/Button";
 import { ACTION_TYPE } from "../../../helpers/helpers";
 
-export default function TaskItem({ task, changeItem, onDelete, onOpenModal, setActionType }) {
+export default function TaskItem({
+  task,
+  changeItem,
+  onDelete,
+  setActionType,
+  onEditTask,
+}) {
   const classes = ["task-item__content-left"];
-  // const [input, setInput] = useState('');
-  let value = ''
+  let value = "";
 
   if (task.completed) {
     classes.push("_done");
   }
+  function deleteTask() {
+    console.log('CLIIIIIIIICK');
+    setActionType(ACTION_TYPE.DELETE_TASK);
+    onDelete(task.id);
+  }
+  function editTask() {
+    console.log('CLIIIIIIIICK');
+    setActionType(ACTION_TYPE.OPEN_MODAL);
+    onEditTask(task);
+    console.log('EEEEEENDDD');
 
-  function setNewName(e) {
-    value = e.target.value
   }
 
   return (
@@ -25,8 +38,6 @@ export default function TaskItem({ task, changeItem, onDelete, onOpenModal, setA
           className="group-item__checkbox"
         />
         <label className="task-item__name">{task.taskName}</label>
-        <input onInput={e => setNewName} className='input' type="text"/>
-
       </div>
 
       <div className="task-item__content-right">
@@ -39,23 +50,17 @@ export default function TaskItem({ task, changeItem, onDelete, onOpenModal, setA
 
         <Button
           text={"Ред-ть"}
-          action={onOpenModal}
-          value={true}
           className={"task-item__button-rename"}
-          id={'button-rename'}
-          type={'button'}
-          setActionType={setActionType}
-          actionType={ACTION_TYPE.OPEN}
+          id={"button-rename"}
+          type={"button"}
+          click={editTask}
         />
         <Button
           text={"Удалить"}
-          action={onDelete}
-          value={task.id}
           className={"task-item__button-delete"}
-          id={'button-delete'}
-          type={'button'}
-          setActionType={setActionType}
-          actionType={ACTION_TYPE.DELETE}
+          id={"button-delete"}
+          type={"button"}
+          click={deleteTask}
         />
       </div>
     </li>

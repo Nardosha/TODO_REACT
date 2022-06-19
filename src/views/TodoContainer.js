@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewTaskComponent from "./components/NewTask/NewTaskComponent";
 import TaskList from "./components/TaskList/TaskList";
 import { Modal } from "./components/Modals/Modal";
-import { type } from "@testing-library/user-event/dist/type";
 import { ACTION_TYPE } from "./helpers/helpers";
 
 export default function TodoContainer() {
@@ -42,8 +41,9 @@ export default function TodoContainer() {
     },
   ]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [action, setAction] = useState(null)
-
+  const [action, setAction] = useState(null);
+  const [editTask, setEditTask] = useState(null);
+  useEffect(() => actionHandler(), [action]);
 
   function toggleModal(boolean) {
     setIsModalOpen(boolean);
@@ -83,13 +83,10 @@ export default function TodoContainer() {
     return !todos.find((group) => group.groupId === newGroup.groupId);
   }
 
-  // function editTodos(newTodo) {
-  //   setAction(ACTION_TYPE.EDIT)
-  // }
-
   function saveTask(newTask) {
     if (isNewGroup(newTask)) {
       const newTodos = [...todos, ...[newTask]];
+      console.log(newTask);
       setTodos(newTodos);
     } else {
       setTodos(
@@ -102,22 +99,20 @@ export default function TodoContainer() {
         })
       );
     }
-    toggleModal(false);
+   setAction(ACTION_TYPE.CLOSE_MODAL)
   }
 
-  function renameTaskItem(newName) {
+  function actionHandler() {
+    if (action === ACTION_TYPE.OPEN_MODAL) {
+      console.log(action);
+      setIsModalOpen(true);
+    }
+    if (action === ACTION_TYPE.CLOSE_MODAL) {
+      setIsModalOpen(false);
+    }
   }
 
-  if (action === 'OPEN') {
-    setIsModalOpen(true)
-    return
-  }
-  if (action === 'CLOSE') {
-    setIsModalOpen(true)
-    return
-  }
-
-  console.log('ACTION', action);
+  console.log('CONTAINER', todos);
 
   return (
     <main className="main">
@@ -128,11 +123,15 @@ export default function TodoContainer() {
           onDeleteTask={deleteTask}
           openModal={toggleModal}
           onDeleteGroup={deleteGroup}
-          onRenameTaskItem={renameTaskItem}
-          actionType={setAction}
+          onEditTask={setEditTask}
+          onAction={setAction}
         />
         <Modal open={isModalOpen}>
-          <NewTaskComponent actionType={action} setActionType={setAction} openModal={toggleModal} onSubmit={saveTask} />
+          <NewTaskComponent
+            editTask={editTask}
+            setActionType={setAction}
+            onSubmit={saveTask}
+          />
         </Modal>
       </div>
     </main>

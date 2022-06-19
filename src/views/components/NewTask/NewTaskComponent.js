@@ -1,9 +1,14 @@
 import Button from "../Buttons/Button";
 import SubmitButton from "../Buttons/SubmitButton";
 import { ACTION_TYPE } from "../../helpers/helpers";
+import { useState } from "react";
 
-export default function NewTaskComponent({ onSubmit, openModal, setActionType, actionType }) {
-  const defTask = {
+export default function NewTaskComponent({
+  onSubmit,
+  editTask,
+  setActionType,
+}) {
+  const defaultTask = {
     taskName: "",
     time: "",
     notes: "",
@@ -13,41 +18,50 @@ export default function NewTaskComponent({ onSubmit, openModal, setActionType, a
     completed: false,
   };
 
-
-  function onChange(e) {
-    const property = e.target.name;
-    const value = e.target.value;
-    defTask[property] = value ? value.toString() : "";
-  }
+  const currentTask = editTask ? editTask : defaultTask;
+  const [newTask, setNewTask] = useState(currentTask);
 
   function submitHandler(e) {
     e.preventDefault();
-
+    console.log('newTask', newTask);
     const todoItem = {
-      groupSign: defTask.groupSign,
-      groupId: defTask.groupId,
-      taskList: [{
-        id: defTask.id,
-        taskName: defTask.taskName,
-        time: defTask.time,
-        notes: defTask.notes,
-        completed: defTask.completed,
-      }]
+      groupSign: newTask.groupSign,
+      groupId: newTask.groupId,
+      taskList: [
+        {
+          id: newTask.id,
+          taskName: newTask.taskName,
+          time: newTask.time,
+          notes: newTask.notes,
+          completed: newTask.completed,
+        },
+      ],
     };
+    console.log('todoItem', todoItem);
     onSubmit(todoItem);
-    openModal(false);
+  }
+
+  function closeModal() {
+    setActionType(ACTION_TYPE.CLOSE_MODAL);
+    setNewTask(defaultTask);
+  }
+
+  function inputHandler(e) {
+    const value = e.target.value;
+    const property = e.target.name;
+    const obj = newTask;
+    obj[property] = value;
+
+    setNewTask(obj);
   }
 
   return (
     <div className="new-task__wrapper">
       <Button
-        className={'button-close'}
-        text={'Закрыть'}
-        id={'button-close'}
-        action={openModal}
-        value={false}
-        setActionType={setActionType}
-        actionType={ACTION_TYPE.CLOSE}
+        className={"button-close"}
+        text={"Закрыть"}
+        id={"button-close"}
+        click={closeModal}
       />
       <h2 className="title new-task__title">New Task</h2>
       <form className="new-task__form" action="#" onSubmit={submitHandler}>
@@ -55,39 +69,42 @@ export default function NewTaskComponent({ onSubmit, openModal, setActionType, a
           Name
         </label>
         <input
+          defaultValue={newTask.taskName}
           name="taskName"
           id="newTaskName"
           type="text"
           placeholder="Enter something..."
           className="input new-task__input"
-          onChange={(e) => onChange(e)}
+          onInput={inputHandler}
         />
         <label className="label new-task__label" htmlFor="newTaskDate">
           Time
         </label>
         <input
+          defaultValue={newTask.time}
           id="newTaskDate"
           className="input new-task__input_time"
           name="time"
           type="time"
-          onChange={(e) => onChange(e)}
+          onChange={inputHandler}
         />
         <label className="label new-task__name" htmlFor="newTaskName">
           Notes
         </label>
         <input
+          defaultValue={newTask.notes}
           id="newTaskName"
           name="notes"
           className="input new-task__input"
           type="text"
           placeholder="Notes..."
-          onChange={(e) => onChange(e)}
+          onChange={inputHandler}
         />
         <div className="new-task__button">
           <SubmitButton
-            className={'new-task__button'}
-            id={'new-task-button'}
-            text={'+'}
+            className={"new-task__button"}
+            id={"new-task-button"}
+            text={"+"}
           />
         </div>
       </form>
