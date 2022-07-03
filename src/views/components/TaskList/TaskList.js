@@ -1,20 +1,28 @@
 import React from "react";
 import TaskGroup from "./components/TaskGroup";
+import { getRandom } from "../../helpers/helpers";
 
 export default function TaskList({
-  groupList,
+  todos,
   onChange,
   onDeleteTask,
   onDeleteGroup,
   onAction,
   onEditTask,
 }) {
-  const list = groupList.map((group) => {
-    const groupKey = group.groupId.toString();
+  const groupSet = new Set();
+
+  todos.map((group) => groupSet.add(group.group));
+  const groups = [...groupSet];
+
+  const groupList = groups.map((group) => {
+    const groupKey = getRandom();
+
     return (
       <TaskGroup
+        todos={todos}
         key={groupKey}
-        taskGroup={group}
+        groupName={group}
         changeTodoItem={onChange}
         onDeleteTask={onDeleteTask}
         onDeleteGroup={onDeleteGroup}
@@ -24,5 +32,5 @@ export default function TaskList({
     );
   });
 
-  return <ul className="task-list task-list__group">{list}</ul>;
+  return <ul className="task-list task-list__group">{groupList}</ul>;
 }

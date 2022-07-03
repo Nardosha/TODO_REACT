@@ -1,7 +1,12 @@
-export const ACTION_TYPE = {
-  CREATE_TASK: 'CREATE_TASK',
-  EDIT_TASK: 'EDIT_TASK',
-  DELETE_TASK: 'DELETE_TASK',
-  OPEN_MODAL: 'OPEN_MODAL',
-  CLOSE_MODAL: 'CLOSE_MODAL'
+export function getRandom() {
+  const uniqueSet = new Set();
+
+  const randomNumber = Math.floor(Math.random() * 1000);
+  if (uniqueSet.has(randomNumber)) return getRandom();
+  uniqueSet.add(randomNumber);
+  return randomNumber;
+}
+
+export function session() {
+  //
 }

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../Buttons/Button";
-import { ACTION_TYPE } from "../../../helpers/helpers";
+import { ACTION_TYPE } from "../../../helpers/variables";
 
 export default function TaskItem({
+  todos,
   task,
   changeItem,
   onDelete,
@@ -10,22 +11,16 @@ export default function TaskItem({
   onEditTask,
 }) {
   const classes = ["task-item__content-left"];
-  let value = "";
-
   if (task.completed) {
     classes.push("_done");
   }
   function deleteTask() {
-    console.log('CLIIIIIIIICK');
     setActionType(ACTION_TYPE.DELETE_TASK);
     onDelete(task.id);
   }
   function editTask() {
-    console.log('CLIIIIIIIICK');
-    setActionType(ACTION_TYPE.OPEN_MODAL);
+    setActionType(ACTION_TYPE.EDIT_TASK);
     onEditTask(task);
-    console.log('EEEEEENDDD');
-
   }
 
   return (
@@ -37,13 +32,13 @@ export default function TaskItem({
           checked={task.completed}
           className="group-item__checkbox"
         />
-        <label className="task-item__name">{task.taskName}</label>
+        <label className="task-item__name">{task.name}</label>
       </div>
 
       <div className="task-item__content-right">
         <div className="task-item__notes">
           Заметка
-          <div className="task-item__notes_popup">{task.notes}</div>
+          <div className="task-item__notes_popup">{task.note}</div>
         </div>
 
         <div className="task-item__time">{task.time}</div>

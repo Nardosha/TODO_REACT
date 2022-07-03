@@ -1,58 +1,34 @@
 import Button from "../Buttons/Button";
 import SubmitButton from "../Buttons/SubmitButton";
-import { ACTION_TYPE } from "../../helpers/helpers";
+import { ACTION_TYPE } from "../../helpers/variables";
 import { useState } from "react";
+import Task from "../../../models/Task";
+import { useInput } from "../../helpers/customHooks";
 
 export default function NewTaskComponent({
   onSubmit,
   editTask,
   setActionType,
 }) {
-  const defaultTask = {
-    taskName: "",
-    time: "",
-    notes: "",
-    id: 13,
-    groupSign: "TODO",
-    groupId: 25,
-    completed: false,
-  };
+  const [task, setTask] = useState(editTask ? editTask : new Task());
+  const name = useInput(task.name, { isEmpty: true, minLength: 1 });
+  const time = useInput(task.time, { isEmpty: true });
+  const note = useInput(task.note, { isEmpty: true, minLength: 1 });
 
-  const currentTask = editTask ? editTask : defaultTask;
-  const [newTask, setNewTask] = useState(currentTask);
-
-  function submitHandler(e) {
+  const submitHandler = (e) => {
+    const formData = new FormData(e.currentTarget);
     e.preventDefault();
-    console.log('newTask', newTask);
-    const todoItem = {
-      groupSign: newTask.groupSign,
-      groupId: newTask.groupId,
-      taskList: [
-        {
-          id: newTask.id,
-          taskName: newTask.taskName,
-          time: newTask.time,
-          notes: newTask.notes,
-          completed: newTask.completed,
-        },
-      ],
-    };
-    console.log('todoItem', todoItem);
-    onSubmit(todoItem);
-  }
+
+    for (let [key, value] of formData.entries()) {
+      task[key] = value;
+    }
+    setTask(task);
+    onSubmit(task);
+    closeModal();
+  };
 
   function closeModal() {
     setActionType(ACTION_TYPE.CLOSE_MODAL);
-    setNewTask(defaultTask);
-  }
-
-  function inputHandler(e) {
-    const value = e.target.value;
-    const property = e.target.name;
-    const obj = newTask;
-    obj[property] = value;
-
-    setNewTask(obj);
   }
 
   return (
@@ -65,46 +41,53 @@ export default function NewTaskComponent({
       />
       <h2 className="title new-task__title">New Task</h2>
       <form className="new-task__form" action="#" onSubmit={submitHandler}>
+        {name.isDirty && name.isEmpty && (
+          <div style={{ color: "res" }}>Невалидненько</div>
+        )}
         <label className="label new-task__name" htmlFor="newTaskName">
           Name
         </label>
         <input
-          defaultValue={newTask.taskName}
-          name="taskName"
+          value={name.value}
+          onChange={name.onChange}
+          onBlur={name.onBlur}
+          name="name"
           id="newTaskName"
           type="text"
           placeholder="Enter something..."
           className="input new-task__input"
-          onInput={inputHandler}
         />
         <label className="label new-task__label" htmlFor="newTaskDate">
           Time
         </label>
         <input
-          defaultValue={newTask.time}
+          value={time.value}
           id="newTaskDate"
           className="input new-task__input_time"
           name="time"
           type="time"
-          onChange={inputHandler}
+          onChange={time.onChange}
+          onBlur={time.onBlur}
         />
         <label className="label new-task__name" htmlFor="newTaskName">
           Notes
         </label>
         <input
-          defaultValue={newTask.notes}
+          value={note.value}
           id="newTaskName"
-          name="notes"
+          name="note"
           className="input new-task__input"
           type="text"
           placeholder="Notes..."
-          onChange={inputHandler}
+          onChange={note.onChange}
+          onBlur={note.onBlur}
         />
         <div className="new-task__button">
           <SubmitButton
             className={"new-task__button"}
             id={"new-task-button"}
             text={"+"}
+            disabled={name.isValid || note.isValid}
           />
         </div>
       </form>
