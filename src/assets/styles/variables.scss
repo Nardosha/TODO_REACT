@@ -1,0 +1,71 @@
+@import "./font";
+
+
+$bgContainer: #555;
+$labelMargin: 0 0 10px 0;
+
+
+//css variables
+:root {
+  // main
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+
+
+  // __buttons
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+
+
+/*--font---*/
+$fontFamily: "Montserrat", sans-serif;
+$fontSizeRegular:  16px;
+$fontWeightRegular: 400;
+$fontColorRegular: #000;
+$lineHeightRegular: 150%;
+// Title
+$fontSizeTitle: 24px;
+$fontWeightTitle: 500;
+
+
+
+/*--input---*/
+//$inputWidth: 30rem;
+$inputHeight: 2rem;
+$inputPadding: 0.3rem;
+
+
+$widthContainer: 900px;
+
+@mixin flexColumn($direction: column, $justify: space-between) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: center;
+  align-content: center;
+}
+
+@mixin input() {
+  width: 100%;
+  min-height: $inputHeight;
+  display: flex;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  padding: $inputPadding;
+}
+
+@mixin button() {
+  @include flexColumn(row, center);
+  width: var(--button-width);
+  min-width: var(--button-width);
+  height: var(--button-min-height);
+  min-height: var(--button-min-height);
+  border-radius: 50%;
+  border: 1px solid black;
+  text-align: center;
+}

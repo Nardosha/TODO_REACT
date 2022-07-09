@@ -1,0 +1,29 @@
+@import "../variables";
+
+.popup {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+
+  &._open {
+    visibility: visible;
+    opacity: 1;
+
+    .new-task__wrapper {
+      transform: scale(1);
+    }
+  }
+
+  &__container {
+    @include flexColumn(column, center);
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+  }
+}

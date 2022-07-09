@@ -1,0 +1,15 @@
+@import "../variables";
+
+.main {
+  height: 100vh;
+  min-width: var(--main-min-width);
+  flex: 0 1 auto;
+}
+
+.task-list__wrapper {
+  @include flexColumn(column, center);
+  width: 100%;
+  height: 100%;
+  background-color: #688a8b;
+  padding: 5px 10px;
+}

@@ -1,0 +1,44 @@
+@import "../variables";
+
+.group-item {
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px;
+  position: relative;
+
+  &:not(:last-child) {
+    margin: 0 0 10px 0;
+  }
+
+  &__header {
+    border: 1px solid black;
+    font-size: $fontSizeTitle;
+    font-weight: $fontWeightTitle;
+
+    @include flexColumn(row, space-between);
+  }
+
+  &__title {
+
+  }
+
+  &__buttons {
+    display: flex;
+
+    & > *:not(:last-child) {
+      margin: 0 10px 0 0;
+    }
+  }
+
+  &__list {
+    line-height: $lineHeightRegular;
+    align-items: flex-start;
+    padding: 0.2rem;
+  }
+
+  &__task {
+    width: 100%;
+    @include flexColumn(row, space-between);
+
+  }
+}

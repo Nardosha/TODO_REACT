@@ -92,10 +92,216 @@ legend {
   display: block;
 }
 
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
 /*--font---*/
 /*--input---*/
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
 /*--font---*/
 /*--input---*/
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+/*--font---*/
+/*--input---*/
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: var(--button-width);
+  min-width: var(--button-width);
+  height: var(--button-min-height);
+  min-height: var(--button-min-height);
+  border-radius: 50%;
+  border: 1px solid black;
+  text-align: center;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+/*--font---*/
+/*--input---*/
+.popup {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+}
+.popup._open {
+  visibility: visible;
+  opacity: 1;
+}
+.popup._open .new-task__wrapper {
+  transform: scale(1);
+}
+.popup__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
 /*--font---*/
 /*--input---*/
 .new-task {
@@ -113,12 +319,14 @@ legend {
   align-content: center;
 }
 .new-task__wrapper {
-  max-width: 40%;
+  min-width: 60%;
+  max-width: 60%;
   min-height: 80%;
-  background-color: #d191c8;
+  background-color: #ba74af;
   padding: 10px 10px;
+  border-radius: 0.7rem;
   transform: scale(0);
-  transition: transform 0.5s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 .new-task__title {
   margin: 10px 0;
@@ -144,8 +352,10 @@ legend {
   justify-content: center;
   align-items: center;
   align-content: center;
-  width: 50px;
-  height: 50px;
+  width: var(--button-width);
+  min-width: var(--button-width);
+  height: var(--button-min-height);
+  min-height: var(--button-min-height);
   border-radius: 50%;
   border: 1px solid black;
   text-align: center;
@@ -154,11 +364,39 @@ legend {
   display: none;
 }
 
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
 /*--font---*/
 /*--input---*/
 .main {
   height: 100vh;
-  min-width: 620px;
+  min-width: var(--main-min-width);
   flex: 0 1 auto;
 }
 
@@ -174,12 +412,216 @@ legend {
   padding: 5px 10px;
 }
 
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+/*--font---*/
+/*--input---*/
+.task-list {
+  border: 1px solid black;
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+/*--font---*/
+/*--input---*/
+.group-item {
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px;
+  position: relative;
+}
+.group-item:not(:last-child) {
+  margin: 0 0 10px 0;
+}
+.group-item__header {
+  border: 1px solid black;
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+.group-item__buttons {
+  display: flex;
+}
+.group-item__buttons > *:not(:last-child) {
+  margin: 0 10px 0 0;
+}
+.group-item__list {
+  line-height: 150%;
+  align-items: flex-start;
+  padding: 0.2rem;
+}
+.group-item__task {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+/*--font---*/
+/*--input---*/
+.task-item__content_left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+.task-item__content_left > *:not(:last-child) {
+  margin-right: 10px;
+}
+.task-item__content_right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+.task-item__content_right > *:not(:last-child) {
+  margin-right: 10px;
+}
+.task-item__name {
+  width: 100%;
+}
+.task-item__notes {
+  position: relative;
+  cursor: pointer;
+}
+.task-item__notes:hover .popup-note {
+  transform: translate(0, 30%) scale(1);
+  opacity: 1;
+}
+.task-item__time {
+  width: 100%;
+  color: #555555;
+}
+.task-item__button-delete {
+  width: 100%;
+}
+
+.popup-note {
+  position: absolute;
+  display: flex;
+  z-index: 2;
+  background: #555555;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translate(0%, 25%) scale(0);
+  transition: all 0.4s ease-in-out;
+}
+
+._done {
+  text-decoration: line-through;
+}
+
+body, html {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #000;
+}
+
 .title {
   font-size: 24px;
 }
 
 .input {
-  width: 30rem;
+  width: 100%;
   min-height: 2rem;
   display: flex;
   border-radius: 0.5rem;
@@ -190,47 +632,6 @@ legend {
 .label {
   display: block;
   margin: 0 0 10px 0;
-}
-
-.button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid black;
-  text-align: center;
-}
-
-.popup {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  visibility: hidden;
-  opacity: 0;
-}
-.popup._open {
-  visibility: visible;
-  opacity: 1;
-}
-.popup._open .new-task__wrapper {
-  transform: scale(1);
-}
-.popup__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 5px 10px;
 }
 
 .App {
