@@ -3,14 +3,13 @@ import Button from "../../Buttons/Button";
 import { ACTION_TYPE } from "../../../helpers/variables";
 
 export default function TaskItem({
-  todos,
   task,
   changeItem,
   onDelete,
   setActionType,
   onEditTask,
 }) {
-  const classes = ["task-item__content-left"];
+  const classes = ["task-item__content_left"];
   if (task.completed) {
     classes.push("_done");
   }
@@ -33,30 +32,34 @@ export default function TaskItem({
           className="group-item__checkbox"
         />
         <label className="task-item__name">{task.name}</label>
-      </div>
 
-      <div className="task-item__content-right">
         <div className="task-item__notes">
           Заметка
-          <div className="task-item__notes_popup">{task.note}</div>
+          <div className="task-item__notes_popup popup-note">
+          <div className='popup__content'>{task.note}</div>
+          </div>
         </div>
+      </div>
 
+      <div className="task-item__content_right">
         <div className="task-item__time">{task.time}</div>
 
         <Button
+          // iconName="edit"
           text={"Ред-ть"}
           className={"task-item__button-rename"}
           id={"button-rename"}
           type={"button"}
           click={editTask}
         />
-        <Button
-          text={"Удалить"}
-          className={"task-item__button-delete"}
-          id={"button-delete"}
-          type={"button"}
-          click={deleteTask}
-        />
+
+      <Button
+        text="-"
+        className="task-item__button-delete"
+        id={"button-delete"}
+        type={"button"}
+        click={deleteTask}
+      />
       </div>
     </li>
   );

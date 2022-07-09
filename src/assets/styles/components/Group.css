@@ -1,0 +1,70 @@
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+/*--font---*/
+/*--input---*/
+.group-item {
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px;
+  position: relative;
+}
+.group-item:not(:last-child) {
+  margin: 0 0 10px 0;
+}
+.group-item__header {
+  border: 1px solid black;
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+.group-item__buttons {
+  display: flex;
+}
+.group-item__buttons > *:not(:last-child) {
+  margin: 0 10px 0 0;
+}
+.group-item__list {
+  line-height: 150%;
+  align-items: flex-start;
+  padding: 0.2rem;
+}
+.group-item__task {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+/*# sourceMappingURL=Group.css.map */

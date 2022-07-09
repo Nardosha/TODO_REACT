@@ -1,0 +1,60 @@
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat"), url("../fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat"), url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.ttf");
+}
+:root {
+  --main-min-width: 425px;
+  --color-white: #fff;
+  --color-black: #000;
+  --button-width: 40px;
+  --button-min-width: 40px;
+  --button-height: 40px;
+  --button-min-height: 40px;
+}
+
+/*--font---*/
+/*--input---*/
+.popup {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+}
+.popup._open {
+  visibility: visible;
+  opacity: 1;
+}
+.popup._open .new-task__wrapper {
+  transform: scale(1);
+}
+.popup__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+}
+
+/*# sourceMappingURL=Popup.css.map */

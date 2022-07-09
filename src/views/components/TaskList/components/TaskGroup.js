@@ -11,6 +11,7 @@ export default function TaskGroup({
   onDeleteGroup,
   setActionType,
   onEditTask,
+  onCreateTask,
   todos,
 }) {
   function deleteTask() {
@@ -18,42 +19,45 @@ export default function TaskGroup({
     onDeleteGroup(groupName);
   }
 
-  function createTask() {
-    setActionType(ACTION_TYPE.CREATE_TASK);
-  }
-
   const taskItems = todos.map((task) => {
-    if (task.group !== groupName) return;
+    if (task.group === groupName) {
+      const taskKey = getRandom();
 
-    const taskKey = getRandom();
-
-    return (
-      <TaskItem
-        todos={todos}
-        key={taskKey}
-        task={task}
-        changeItem={changeTodoItem}
-        onDelete={onDeleteTask}
-        setActionType={setActionType}
-        actionType={ACTION_TYPE.CREATE_TASK}
-        onEditTask={onEditTask}
-      />
-    );
+      return (
+        <TaskItem
+          todos={todos}
+          key={taskKey}
+          task={task}
+          changeItem={changeTodoItem}
+          onDelete={onDeleteTask}
+          setActionType={setActionType}
+          actionType={ACTION_TYPE.CREATE_TASK}
+          onEditTask={onEditTask}
+        />
+      );
+    }
   });
 
   return (
     <li className="group-item">
-      <h2 className="group-item__header">
-        {groupName}
-        <Button
-          text={"Удалить"}
-          value={groupName}
-          action={onDeleteGroup}
-          className={"delete-group"}
-          click={deleteTask}
-        />
-        <Button text={"+"} className={"add-task"} click={createTask} />
-      </h2>
+      <div className="group-item__header">
+        <h2 className="group-item__title">{groupName}</h2>
+
+        <div className="group-item__buttons">
+          <Button
+            text="+"
+            className="add-task"
+            click={() => onCreateTask()}
+          />
+          <Button
+            text="-"
+            value={groupName}
+            action={onDeleteGroup}
+            className="delete-group"
+            click={deleteTask}
+          />
+        </div>
+      </div>
 
       <ul className="task-list group-item__list">{taskItems}</ul>
     </li>

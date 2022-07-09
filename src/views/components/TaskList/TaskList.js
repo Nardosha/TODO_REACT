@@ -1,6 +1,7 @@
 import React from "react";
 import TaskGroup from "./components/TaskGroup";
 import { getRandom } from "../../helpers/helpers";
+import Button from "../Buttons/Button";
 
 export default function TaskList({
   todos,
@@ -9,6 +10,7 @@ export default function TaskList({
   onDeleteGroup,
   onAction,
   onEditTask,
+  onCreateTask,
 }) {
   const groupSet = new Set();
 
@@ -28,9 +30,21 @@ export default function TaskList({
         onDeleteGroup={onDeleteGroup}
         setActionType={onAction}
         onEditTask={onEditTask}
+        onCreateTask={onCreateTask}
       />
     );
   });
 
-  return <ul className="task-list task-list__group">{groupList}</ul>;
+  return (
+    <>
+      <ul className="task-list task-list__group">{groupList}</ul>
+      <div className="new-task__button">
+        <Button
+          text={"+"}
+          className={"add-task"}
+          click={() => onCreateTask()}
+        />
+      </div>
+    </>
+  );
 }

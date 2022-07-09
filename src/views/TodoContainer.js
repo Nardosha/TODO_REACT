@@ -53,7 +53,7 @@ export default function TodoContainer() {
 
   function deleteGroup(deleteGroup) {
     console.log("Удаление ГРУППЫ", deleteGroup);
-    setTodos(todos.filter((task) => task.groupSign !== deleteGroup));
+    setTodos(todos.filter((task) => task.group !== deleteGroup));
   }
 
   function isNewTask(newTask) {
@@ -74,6 +74,10 @@ export default function TodoContainer() {
     }
     setAction(ACTION_TYPE.CLOSE_MODAL);
   }
+
+  const createTask = () => {
+    setAction(ACTION_TYPE.CREATE_TASK);
+  };
 
   function actionHandler() {
     if (action === ACTION_TYPE.CLOSE_MODAL) {
@@ -107,6 +111,7 @@ export default function TodoContainer() {
           onDeleteGroup={deleteGroup}
           onEditTask={setEditTask}
           onAction={setAction}
+          onCreateTask={createTask}
         />
         <Modal open={isModalOpen}>
           <NewTaskComponent
