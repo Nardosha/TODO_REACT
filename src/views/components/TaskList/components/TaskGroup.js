@@ -41,7 +41,9 @@ export default function TaskGroup({
   return (
     <li className="group-item">
       <div className="group-item__header">
-        <h2 className="group-item__title">{groupName}</h2>
+        <div className='group-item__title'>
+          <h2 className="group-item__title_text">{groupName}</h2>
+        </div>
 
         <div className="group-item__buttons">
           <Button

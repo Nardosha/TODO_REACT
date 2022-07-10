@@ -488,7 +488,7 @@ legend {
   padding: 5px;
   position: relative;
 }
-.group-item:not(:last-child) {
+.group-item > *:not(:last-child) {
   margin: 0 0 10px 0;
 }
 .group-item__header {
@@ -501,6 +501,13 @@ legend {
   align-items: center;
   align-content: center;
 }
+.group-item__title {
+  width: 100%;
+  height: 100%;
+}
+.group-item__title_text {
+  margin: 0 0 0 5px;
+}
 .group-item__buttons {
   display: flex;
 }
@@ -510,7 +517,6 @@ legend {
 .group-item__list {
   line-height: 150%;
   align-items: flex-start;
-  padding: 0.2rem;
 }
 .group-item__task {
   width: 100%;
